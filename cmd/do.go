@@ -13,14 +13,14 @@ var doCmd = &cobra.Command{
 	Run: func(cmd *cobra.Command, args []string) {
 		var ids []int
 		for _, arg := range args {
-			id, err := strconv.Atoi(arg)
+			id, err := strconv.Atoi(arg) //	converts the arg to an int
 			if err != nil {
 				fmt.Println("Failed to parse the argument: ", arg)
 				break
 			}
-			ids = append(ids, id)
+			ids = append(ids, id) //	append new id into our slice of ids
 		}
-		fmt.Println(ids)
+		fmt.Println(ids) //	for now, just print ids
 	},
 }
 
