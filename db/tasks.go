@@ -68,6 +68,19 @@ func AllTasks() ([]Task, error) {
 	return tasks, nil
 }
 
+//DeleteTask removes task from db when completed
+func DeleteTask(key int) error {
+	err := db.Update(func(tx *bolt.Tx) error {
+		b := tx.Bucket(taskBucket)
+		return b.Delete(itob(key))
+	})
+	if err != nil {
+		return err
+	}
+
+	return nil
+}
+
 //itob takes in interger and makes in byte string
 func itob(v int) []byte {
 	b := make([]byte, 8)
